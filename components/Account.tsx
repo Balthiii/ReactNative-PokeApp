@@ -4,12 +4,19 @@ import { StyleSheet, View, Alert } from 'react-native'
 import { Button, Input } from '@rneui/themed'
 import { Session } from '@supabase/supabase-js'
 import Avatar from './Avatar'
+import { useNavigation } from '@react-navigation/native'
+import { ScrollView } from 'react-native'
+import { RouteProp } from '@react-navigation/native'
 
-export default function Account({ session }: { session: Session }) {
+type AccountRouteProp = RouteProp<{ params: { session: Session } }, 'params'>
+
+export default function Account({ route }: { route: AccountRouteProp }) {
+  const session = route.params.session
   const [loading, setLoading] = useState(true)
   const [username, setUsername] = useState('')
   const [website, setWebsite] = useState('')
   const [avatarUrl, setAvatarUrl] = useState('')
+  const navigation = useNavigation()
 
   useEffect(() => {
     if (session) getProfile()
@@ -80,7 +87,7 @@ export default function Account({ session }: { session: Session }) {
 
   return (
     
-    <View style={styles.container}>
+    <ScrollView style={styles.container}>
         <View>
       <Avatar
         size={200}
@@ -101,6 +108,10 @@ export default function Account({ session }: { session: Session }) {
         <Input label="Website" value={website || ''} onChangeText={(text) => setWebsite(text)} />
       </View>
 
+      <View style={styles.verticallySpaced}>
+      <Button title="Go to Application" onPress={() => navigation.navigate('TabNavigator', { screen: 'Index' })} />
+      </View>
+
       <View style={[styles.verticallySpaced, styles.mt20]}>
         <Button
           title={loading ? 'Loading ...' : 'Update'}
@@ -109,10 +120,11 @@ export default function Account({ session }: { session: Session }) {
         />
       </View>
 
+
       <View style={styles.verticallySpaced}>
         <Button title="Sign Out" onPress={() => supabase.auth.signOut()} />
       </View>
-    </View>
+    </ScrollView>
   )
 }
 
