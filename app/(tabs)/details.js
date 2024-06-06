@@ -29,7 +29,9 @@ export default function DetailsScreen({ route }) {
         <Text style={styles.infoText}>Poids: {pokemon.weight} kg</Text>
         <Text style={styles.infoText}>Catégorie: {pokemon.category}</Text>
         <Text style={styles.infoText}>Talent: {pokemon.talent}</Text>
-        <Button title="Modifier" onPress={() => navigation.navigate('Edit', { pokemon })} />
+        <TouchableOpacity style={styles.EditButton} onPress={() => navigation.navigate('Edit', { pokemon })}>
+        <Text style={styles.EditButtonText}>Modifier</Text>
+        </TouchableOpacity>
         <TouchableOpacity style={styles.deleteButton} onPress={handleDelete}>
         <Text style={styles.deleteButtonText}>Supprimer</Text>
         </TouchableOpacity>
@@ -68,6 +70,17 @@ const styles = StyleSheet.create({
   infoText: {
     fontSize: 18,
     marginBottom: 10,
+  },
+  EditButton: {
+    backgroundColor: '#2196f3',
+    padding: 10,
+    margin: 10,
+    borderRadius: 5,
+    alignItems: 'center',
+  },
+  EditButtonText: {
+    color: 'white',
+    fontSize: 16,
   },
   deleteButton: {
     backgroundColor: 'red',

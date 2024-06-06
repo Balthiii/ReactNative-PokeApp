@@ -10,10 +10,12 @@ export default function AddScreen() {
   const [weight, setWeight] = useState('');
   const [category, setCategory] = useState('');
   const [talent, setTalent] = useState('');
-  const [imageUrl, setImageUrl] = useState('https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/');
+  const [pokemonId, setPokemonId] = useState('');
   const navigation = useNavigation();
   const route = useRoute();
 
+  const BASE_IMAGE_URL = 'https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/';
+  const imageUrl = `${BASE_IMAGE_URL}${pokemonId}.png`
   const { onAdd } = route.params || { onAdd: () => {} };
   
   const handleAddPokemon = async () => {
@@ -51,8 +53,8 @@ export default function AddScreen() {
       <Text style={styles.label}>Talent</Text>
       <TextInput style={styles.input} value={talent} onChangeText={setTalent} />
 
-      <Text style={styles.label}>URL de l'image</Text>
-      <TextInput style={styles.input} value={imageUrl} onChangeText={setImageUrl} />
+      <Text style={styles.label}>ID de l'image</Text>
+      <TextInput style={styles.input} value={pokemonId} onChangeText={setPokemonId} />
 
       <Button title="Ajouter" onPress={handleAddPokemon} />
     </ScrollView>

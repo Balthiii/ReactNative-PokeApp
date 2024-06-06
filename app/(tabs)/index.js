@@ -1,33 +1,30 @@
 import React, { useEffect, useState } from 'react';
 import { FlatList, Text, Image, View, StyleSheet, TouchableOpacity } from 'react-native';
 import { supabase } from '../../lib/supabase'
-import { useNavigation,useRoute } from '@react-navigation/native';
+import { useNavigation, useIsFocused } from '@react-navigation/native';
 
 export default function IndexScreen() {
   const [pokemonList, setPokemonList] = useState([]);
   const navigation = useNavigation();
+  const isFocused = useIsFocused();
+
+  const fetchPokemon = async () => {
+    const { data, error } = await supabase
+      .from('pokemon')
+      .select('*');
+
+    setPokemonList(data);
+  };
 
   useEffect(() => {
-    const fetchPokemon = async () => {
-      const { data, error } = await supabase
-        .from('pokemon')
-        .select('*');
-
-      if (error) {
-        console.error(error);
-        return;
-      }
-
-      setPokemonList(data);
-    };
-
     fetchPokemon();
   }, []);
 
-const handleAddPokemon = () => {
-  loadPokemon();
-  navigation.navigate('Ajouter', { onAdd: handleAddPokemon });
-};
+  useEffect(() => {
+    if (isFocused) {
+      fetchPokemon();
+    }
+  }, [isFocused]);
 
   return (
     <FlatList

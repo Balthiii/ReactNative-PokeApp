@@ -1,19 +1,21 @@
 import React, { useState,useEffect } from 'react';
-import { View, Text, Image, StyleSheet, TextInput, Button, ScrollView } from 'react-native';
+import { View, Text, Image, StyleSheet, TextInput, Button, ScrollView, Alert } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { supabase  } from '../../lib/supabase';
 
 export default function EditScreen({ route }) {
-  const { pokemon } = route.params;
+  const BASE_IMAGE_URL = 'https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/';
   const navigation = useNavigation();
 
+  const { pokemon } = route.params;
   const [name, setName] = useState(pokemon.name);
   const [type, setType] = useState(pokemon.type);
   const [size, setSize] = useState(pokemon.size.toString());
   const [weight, setWeight] = useState(pokemon.weight.toString());
   const [category, setCategory] = useState(pokemon.category);
   const [talent, setTalent] = useState(pokemon.talent);
-  const [imageUrl, setImageUrl] = useState(pokemon.image_url);
+  const [pokemonId, setPokemonId] = useState(pokemon.image_url.replace(BASE_IMAGE_URL, '').replace('.png', ''));
+  const imageUrl = `${BASE_IMAGE_URL}${pokemonId}.png`;
 
   useEffect(() => {
     setName(pokemon.name);
@@ -22,7 +24,7 @@ export default function EditScreen({ route }) {
     setWeight(pokemon.weight.toString());
     setCategory(pokemon.category);
     setTalent(pokemon.talent);
-    setImageUrl(pokemon.image_url);
+    setPokemonId(pokemon.image_url.replace(BASE_IMAGE_URL, '').replace('.png', ''));
   }, [pokemon]);
 
   const handleSave = async () => {
@@ -60,8 +62,8 @@ export default function EditScreen({ route }) {
   <TextInput style={styles.input} value={category} onChangeText={setCategory} placeholder="Catégorie" />
   <Text style={styles.label}>Talent</Text>
   <TextInput style={styles.input} value={talent} onChangeText={setTalent} placeholder="Talent" />
-  <Text style={styles.label}>URL de l'image</Text>
-  <TextInput style={styles.input} value={imageUrl} onChangeText={setImageUrl} />
+  <Text style={styles.label}>ID de l'image</Text>
+  <TextInput style={styles.input} value={pokemonId} onChangeText={setPokemonId} />
   <View style={styles.buttonContainer}>
     <Button title="Sauvegarder" onPress={handleSave} />   
   </View>
