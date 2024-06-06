@@ -1,7 +1,7 @@
-import React, { useState,useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, Text, Image, StyleSheet, TextInput, Button, ScrollView, Alert } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import { supabase  } from '../../lib/supabase';
+import { supabase } from '../../lib/supabase';
 
 export default function EditScreen({ route }) {
   const BASE_IMAGE_URL = 'https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/';
@@ -40,7 +40,7 @@ export default function EditScreen({ route }) {
         image_url: imageUrl,
       })
       .eq('id', pokemon.id);
-  
+
     if (error) {
       console.error('Erreur lors de la mise à jour du Pokémon :', error);
     } else {
@@ -49,25 +49,25 @@ export default function EditScreen({ route }) {
   };
   return (
     <ScrollView style={styles.container}>
-  <Image source={{ uri: pokemon.image_url }} style={styles.pokemonImage} />
-  <Text style={styles.label}>Nom</Text>
-  <TextInput style={styles.input} value={name} onChangeText={setName} placeholder="Nom" />
-  <Text style={styles.label}>Type</Text>
-  <TextInput style={styles.input} value={type} onChangeText={setType} placeholder="Type" />
-  <Text style={styles.label}>Taille</Text>
-  <TextInput style={styles.input} value={size} onChangeText={setSize} placeholder="Taille" keyboardType="numeric" />
-  <Text style={styles.label}>Poids</Text>
-  <TextInput style={styles.input} value={weight} onChangeText={setWeight} placeholder="Poids" keyboardType="numeric" />
-  <Text style={styles.label}>Catégorie</Text>
-  <TextInput style={styles.input} value={category} onChangeText={setCategory} placeholder="Catégorie" />
-  <Text style={styles.label}>Talent</Text>
-  <TextInput style={styles.input} value={talent} onChangeText={setTalent} placeholder="Talent" />
-  <Text style={styles.label}>ID de l'image</Text>
-  <TextInput style={styles.input} value={pokemonId} onChangeText={setPokemonId} />
-  <View style={styles.buttonContainer}>
-    <Button title="Sauvegarder" onPress={handleSave} />   
-  </View>
-</ScrollView>
+      <Image source={{ uri: pokemon.image_url }} style={styles.pokemonImage} />
+      <Text style={styles.label}>Nom</Text>
+      <TextInput style={styles.input} value={name} onChangeText={setName} placeholder="Nom" />
+      <Text style={styles.label}>Type</Text>
+      <TextInput style={styles.input} value={type} onChangeText={setType} placeholder="Type" />
+      <Text style={styles.label}>Taille</Text>
+      <TextInput style={styles.input} value={size} onChangeText={setSize} placeholder="Taille" keyboardType="numeric" />
+      <Text style={styles.label}>Poids</Text>
+      <TextInput style={styles.input} value={weight} onChangeText={setWeight} placeholder="Poids" keyboardType="numeric" />
+      <Text style={styles.label}>Catégorie</Text>
+      <TextInput style={styles.input} value={category} onChangeText={setCategory} placeholder="Catégorie" />
+      <Text style={styles.label}>Talent</Text>
+      <TextInput style={styles.input} value={talent} onChangeText={setTalent} placeholder="Talent" />
+      <Text style={styles.label}>ID de l'image</Text>
+      <TextInput style={styles.input} value={pokemonId} onChangeText={setPokemonId} />
+      <View style={styles.buttonContainer}>
+        <Button title="Sauvegarder" onPress={handleSave} />
+      </View>
+    </ScrollView>
   );
 }
 

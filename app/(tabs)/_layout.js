@@ -6,7 +6,7 @@ import detailsIcon from '../../assets/details.png';
 import editIcon from '../../assets/edit.png';
 import addIcon from '../../assets/add.png';
 import IndexScreen from './index.js';
-import DetailsScreen from './details.js'; 
+import DetailsScreen from './details.js';
 import EditScreen from './edit';
 import AddScreen from './add.js';
 
@@ -15,23 +15,23 @@ const Tab = createBottomTabNavigator();
 export default function TabLayout() {
   return (
     <Tab.Navigator>
-      <Tab.Screen 
-        name="Accueil" 
+      <Tab.Screen
+        name="Accueil"
         component={IndexScreen}
-        options={{ 
+        options={{
           tabBarIcon: () => (
             <Image source={homeIcon} style={{ width: 20, height: 20 }} />
           ),
-        }} 
+        }}
       />
-      <Tab.Screen 
-        name="Details" 
+      <Tab.Screen
+        name="Details"
         component={DetailsScreen}
-        options={{ 
+        options={{
           tabBarIcon: () => (
-            <Image source={detailsIcon} style={{ width: 20, height: 20 }} /> 
+            <Image source={detailsIcon} style={{ width: 20, height: 20 }} />
           ),
-        }} 
+        }}
       />
       <Tab.Screen
         name="Edit"
@@ -42,10 +42,10 @@ export default function TabLayout() {
           ),
         }}
       />
-      <Tab.Screen 
-        name="Ajouter" 
+      <Tab.Screen
+        name="Ajouter"
         component={AddScreen}
-        options={{ 
+        options={{
           tabBarIcon: () => (
             <Image source={addIcon} style={{ width: 20, height: 20 }} />
           ),

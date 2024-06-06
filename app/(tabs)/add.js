@@ -16,8 +16,8 @@ export default function AddScreen() {
 
   const BASE_IMAGE_URL = 'https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/';
   const imageUrl = `${BASE_IMAGE_URL}${pokemonId}.png`
-  const { onAdd } = route.params || { onAdd: () => {} };
-  
+  const { onAdd } = route.params || { onAdd: () => { } };
+
   const handleAddPokemon = async () => {
     const { error } = await supabase
       .from('pokemon')
@@ -56,7 +56,9 @@ export default function AddScreen() {
       <Text style={styles.label}>ID de l'image</Text>
       <TextInput style={styles.input} value={pokemonId} onChangeText={setPokemonId} />
 
+      <View style={styles.addButton}>
       <Button title="Ajouter" onPress={handleAddPokemon} />
+      </View>
     </ScrollView>
   );
 }
@@ -78,5 +80,10 @@ const styles = StyleSheet.create({
     borderColor: '#ddd',
     padding: 10,
     borderRadius: 6,
+  },
+  addButton: {
+    marginBottom: 30,
+    marginTop: 30,
+    
   },
 });

@@ -89,7 +89,7 @@ export default function Avatar({ url, size = 150, onUpload }: Props) {
   }
 
   return (
-    <View>
+    <View style={styles.container}>
       {avatarUrl ? (
         <Image
           source={{ uri: avatarUrl }}
@@ -111,10 +111,16 @@ export default function Avatar({ url, size = 150, onUpload }: Props) {
 }
 
 const styles = StyleSheet.create({
+   container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
   avatar: {
     borderRadius: 5,
     overflow: 'hidden',
     maxWidth: '100%',
+    marginBottom: 20,
   },
   image: {
     objectFit: 'cover',
