@@ -1,10 +1,10 @@
-import { View, Text, Image, StyleSheet,Button,ScrollView,TouchableOpacity,Alert } from 'react-native';
+import { View, Text, Image, StyleSheet, Button, ScrollView, TouchableOpacity, Alert } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { supabase } from '../../lib/supabase';
 export default function DetailsScreen({ route }) {
   const { pokemon } = route.params;
   const navigation = useNavigation();
-  
+
   const handleDelete = async () => {
     const { error } = await supabase
       .from('pokemon')
@@ -30,10 +30,10 @@ export default function DetailsScreen({ route }) {
         <Text style={styles.infoText}>Catégorie: {pokemon.category}</Text>
         <Text style={styles.infoText}>Talent: {pokemon.talent}</Text>
         <TouchableOpacity style={styles.EditButton} onPress={() => navigation.navigate('Edit', { pokemon })}>
-        <Text style={styles.EditButtonText}>Modifier</Text>
+          <Text style={styles.EditButtonText}>Modifier</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.deleteButton} onPress={handleDelete}>
-        <Text style={styles.deleteButtonText}>Supprimer</Text>
+          <Text style={styles.deleteButtonText}>Supprimer</Text>
         </TouchableOpacity>
       </ScrollView>
     </ScrollView>
@@ -41,12 +41,12 @@ export default function DetailsScreen({ route }) {
 }
 
 const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      alignItems: 'center',
-      justifyContent: 'center',
-      backgroundColor: '#f5f5f5',
-    },
+  container: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#f5f5f5',
+  },
   pokemonImage: {
     width: 200,
     height: 200,

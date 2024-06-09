@@ -23,6 +23,12 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "extra": {
+      "eas": {
+        "projectId": "77e4f680-b03d-4911-a164-82c8a2e5f4ce"
+      }
+    },
+    "owner": "balthiii"
   }
 }
