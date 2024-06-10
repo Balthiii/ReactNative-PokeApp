@@ -54,7 +54,7 @@ export default function AddScreen() {
       <TextInput style={styles.input} value={talent} onChangeText={setTalent} />
 
       <Text style={styles.label}>ID de l'image</Text>
-      <TextInput style={styles.input} value={pokemonId} onChangeText={setPokemonId} />
+      <TextInput style={styles.input} value={pokemonId} onChangeText={setPokemonId}keyboardType="numeric"/>
 
       <View style={styles.addButton}>
       <Button title="Ajouter" onPress={handleAddPokemon} />
